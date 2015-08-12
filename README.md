@@ -1,10 +1,10 @@
 Almari
 ======
-Almari is a micro IoC framework which implement service locator and facade pattern
+Almari is a micro IoC framework which implement service locator and facade pattern.
 
 Installation
 ============
-You can use composer to install Almari
+You can use [composer](http://getcomposer.org) to install Almari
 
 ```
 composer require lotus/almari
@@ -14,8 +14,8 @@ Or you can put it on `composer.json`
 
 ```json
 "require": {
-        "tonjoo/almari": "*"
-    }
+    "tonjoo/almari": "*"
+}
 ```
 
 Basic Usage
@@ -24,41 +24,44 @@ Basic Usage
 The main container class is `Lotus\Almari\Container`
 
 ### Adding service
+
 ```php
-use Lotus\Almari\Container as Container
+use Lotus\Almari\Container as Container;
 
 $app = new Container();
 
 // Create service, return new Foo instance
-$app->bind('foo',function(){
+$app->bind('foo',function() {
 
-	return new Foo();
+    return new Foo();
 
 });
 ```
 
 ### Retrieve Service
-```
+
+```php
 $newFoo = $app->make('foo');
 
 $newFoo2 = $app->make('foo');
 ```
 
 ### Share singleton to container
+
 ```php
-use Lotus\Almari\Container as Container
+use Lotus\Almari\Container as Container;
 
 $app = new Container();
 
 $foo = new Foo();
 
 // Share an instance
-$app->share('fooSingeleton',$foo);
+$app->share('fooSingeleton', $foo);
 
 // Share an instance (lazy load)
-$app->shareDeferred('fooSingeleton',function(){
+$app->shareDeferred('fooSingeleton', function() {
 
-	return new Foo();
+    return new Foo();
 
 });
 
@@ -67,8 +70,9 @@ $app['fooSingeleton'] = $foo;
 
 ```
 ### Retrieve instance
+
 ```php
-$myFoo = app->get('foo',$defaultValue);
+$myFoo = app->get('foo', $defaultValue);
 
 // Or using array access
 $myFoo = app['foo'];
